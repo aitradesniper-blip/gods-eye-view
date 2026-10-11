@@ -151,6 +151,83 @@ The three share tokens are provisional until merge: parks `3`, trails `4`,
 trailheads `5`. After rebasing, preserve all upstream reservations and follow
 the allocation procedure in [CONTRIBUTING.md](../CONTRIBUTING.md#share-link-layer-tokens).
 
+## Continuation review — October 11, 2026
+
+The packaged patch was applied to `591f299d11f38a612629a274463196d57ae3862e`,
+reproducing its recorded tree `76df4fd84f3963ec315247237b6d355c3b1dabc7`.
+Fetching and rebasing onto upstream main retained that same base. Implementation
+commit: `7bc2bb1a88fa1fb3e572915729b9a4ab8f540748`. All 29 upstream token
+reservations remain intact; the three new allocations remain `3`, `4`, and `5`.
+
+Checks used Windows, Node 24.19.0, npm 11.6.0 and Puppeteer's full Chrome for
+Testing 152.0.7977.75. Dependencies were installed with the unchanged lockfile.
+`npm run doctor`, production build, formatting and package-boundary checks,
+`npm run layer-token:check -- --base-ref upstream/main`, and whitespace checks
+passed. The build retains large-chunk warnings. The City browser gate passed
+all 62 checks with no uncaught browser or Cesium errors; scenario request counts
+were 18, 18, and 7 for normal use, a fresh share recipient, and failure/retry.
+
+### Tracking comparison
+
+`npm run test:track -- --headful` passed all 109 checks on the contribution.
+The same command against an unchanged upstream checkout on port 4174 also
+passed all 109 checks. Both runs had a clean console and no HTTP 5xx responses.
+The recorded aircraft arrival failures did not reproduce: commercial and
+military reveal both occurred on frame 4, with zero settle/reveal heading error
+and no model handoff, in both checkouts. Aircraft runtime files and the tracking
+harness are unchanged by this contribution; no assertion was weakened.
+
+The prior headless-shell frames 5/6 remain historical observations. Both fleet
+loops throttle at 80 ms while the harness budgets four rendered frames; at
+60 fps that is about 67 ms. This supports timing sensitivity as a hypothesis,
+without proving the sole cause of the original failures. Initial local attempts
+encountered Vite's `504 Outdated Optimize Dep` startup response; a fresh Vite
+dependency cache and a complete real-GPU run supplied the results above.
+The interrupted software-rendering retry is not counted as a completed gate.
+
+### Required unit gate remains non-green
+
+`npm test` completed its main phase with 6,271 passed, 2 failed and 10 skipped.
+Unchanged upstream reproduced the same two failures with 6,231 passed,
+2 failed and 10 skipped:
+
+- `src/codexOauthRealtime.test.mjs`: installed-executable resolution expected
+  `\home\fixture\.local\bin\codex` but received `codex` on Windows.
+- `src/pinokioLauncherContract.test.mjs`: fixture cleanup failed with Windows
+  `ENOTEMPTY` while removing a temporary directory containing a junction.
+
+These failures stop the runner before its allocation phases. Running those
+two probes separately under Node 24 with `--expose-gc --test --test-concurrency=1`
+passed 1 focus test and 13 overlay tests. This does not turn `npm test` green.
+The PR must remain draft pending a complete green required unit gate or explicit
+maintainer disposition of the reproduced upstream failures.
+
+The unchanged dependency lockfile reports three audit findings: one low
+(`dompurify`) and two high (`sharp`, `source-map-js`). Dependency remediation is
+outside this source contribution and remains a separate review item.
+
+### Refreshed live source and terms review
+
+At 2026-10-11 05:28 UTC, the implemented adapter and normalizer again acquired
+337 boundaries, 4,976 trail segments and 83 trailheads, with zero omitted
+features, finite anchors and every accepted geometry equal to its source.
+Source edit dates matched the table above; 353 trail segments still carried
+`TrailSource='MPO'`. No feature payload was saved in the repository.
+At 05:34 UTC, a live browser activation loaded the same three complete counts
+without errors or partial/stale flags. Visual inspection over San Antonio
+confirmed green park boundaries, amber trail geometry and cyan trailheads over
+the normal satellite basemap, with no uncaught browser errors.
+
+The public CKAN API returned all three current service references, blank named
+license fields, and the original `dcat_issued` dates shown above. These are
+distinct from CKAN's 2023 record-import dates. ArcGIS item notices retain GIS
+warranty disclaimers and trail-use notices. The January 8, 2020 City terms were
+reviewed, including departmental attribution, source/publication citation,
+modification identification, and separate permission for non-City content.
+This confirms the documented conditional source basis, not unconditional
+redistribution rights. Maintainer review of the City terms and MPO provenance
+remains open before merge.
+
 ## A separate next contribution
 
 USGS water observations are the next independent source family to evaluate.
