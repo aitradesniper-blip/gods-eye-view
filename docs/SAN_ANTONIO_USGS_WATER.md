@@ -201,3 +201,72 @@ of the reproduced upstream failure. Tracking intermittency and merge-time token
 reallocation also remain explicit review items. The unchanged lockfile reported
 three existing audit findings (one low, two high); no dependency remediation is
 included in this source contribution.
+
+## Current-main update — October 14, 2026
+
+This USGS water update merges upstream main `1d9d7c71d5c4c3cd222223ca35bc2088b52dcc41` into the existing
+published draft, preserving its implementation commits and separate scope.
+The initial changelog and formatting-scope conflicts retain both contributions
+and current upstream entries. A later upstream refresh also retains the Director
+dateline and portable Chrome changes. Runtime revision validated:
+`55d39aeee3852f9b15aacf8aa424cba94c215a93`. The final documentation commit adds this record only.
+
+Required checks passed on the actual updated tree: doctor JSON, format/check
+(1353 adopted files), boundaries, whitespace, immutable
+token checking, full unit runner and production build. The full unit runner
+reported **6542 main passes / 0 failures / 1 skip**, followed by
+**1 focus allocation pass and 13 overlay allocation passes** (6556
+passes total). The skip is the Windows-native DACL test on Linux. Build warnings
+about large chunks remain. The USGS gate passed all 38
+checks; tracking passed **109/0/0**, with clean console and HTTP 5xx ledger.
+Built-preview inspection passed 15 checks, including picks,
+source credits, activation/disable cleanup and a fresh share recipient.
+
+Execution used WSL2 Ubuntu, Node 24.19.0, locked `npm ci` with npm 10.9.3,
+and full Chrome for Testing 152.0.7977.75. Bubblewrap isolated mount, PID, user
+and network namespaces, without host credentials or home directories. Browser
+and server egress used an exact-host HTTPS allowlist; Chrome retained its own
+namespace/seccomp sandbox. The actual renderer was ANGLE Vulkan SwiftShader
+software. A restricted WSL hardware attempt could not create WebGL2, so hardware
+performance remains unverified. Tracking's official `--offline-imagery` option
+fixtures tile images while required fonts, metadata and terrain remain real.
+
+PR #997 is now merged (`91ac5c119084fdb200362b2c6dd07cb2324fb081`). Fresh
+native Windows 11 Pro build 22621, Node 24.19.0, `process.platform=win32`
+verification of current main's exact `codexOauthRealtime.test.mjs` file passed
+**8/8**. The prior Codex fixture failure is resolved; earlier Windows/Pinokio
+and tracking records above remain historical. A complete native Windows suite
+is not claimed by the Linux review. The prepared revision has not been pushed,
+so it has no new GitHub CI result. The original draft's CI remains
+`action_required`; local passes do not clear required CI or maintainer review.
+
+The initial browser gate failed with 4 passing checks and an absent GPU pick
+on its fifth assertion, in both standalone and combined updates. An isolated
+probe found the clamped markers became pickable after about 2.2 and 1.3 seconds;
+all original 38 assertions then passed. The reviewed gate now waits up to 30
+seconds for the same observable pick before performing its original assertion
+and click/selection checks. No production renderer or assertion was weakened.
+
+Against current main alone, the allocation helper retains provisional USGS
+token `3`, preserving all 29 permanent assignments. City draft #1002 also
+provisionally uses `3`; these are alternatives until an integration order is
+chosen. The local City-first combined candidate uses USGS `6`. If City merges
+first, merge that refreshed main and reallocate USGS rather than publishing an
+ambiguous token or consuming unreserved digits out of order.
+
+Fresh live validation returned 45 locations and 141 readings, 136 numeric,
+with complete station/series joins; Bexar contained 30 locations and 103 readings.
+USGS credit, provisional-data cautions and third-party-rights caveats remain
+explicit. Current availability does not change those terms or prove complete coverage.
+
+Fresh audits of candidate and the unchanged baseline lockfile remain identical:
+one low (dompurify) and two high (sharp, source-map-js). No dependency change is
+included. Review records retain the initial marker gate failure, the superseded
+main runs, one interrupted tracking navigation during checkout refresh, and the
+review proxy's rejected-socket EPIPE crash. That helper was fixed without widening
+its allowlist, and affected completed gates were rerun. Those earlier attempts
+are not counted as completed passing gates.
+
+Keep the draft status. Source-rights disposition, applicable hardware evidence,
+successful CI, maintainer acceptance and refreshed merge-time token allocation
+remain conditions before merge. No force push, approval review or merge was performed.
