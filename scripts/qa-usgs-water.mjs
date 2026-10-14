@@ -205,6 +205,29 @@ async function resources(page) {
 }
 async function pickSite(page, id, lon, lat) {
   await drawFrame(page);
+  // A loaded data source can precede its clamped point's first rendered frame.
+  // Wait for the same observable pick asserted below, without accepting an
+  // absent marker or changing the production renderer.
+  await page.waitForFunction(
+    ({ id, lon, lat }) => {
+      const C = window.__waterCesium,
+        s = window.__godsEyeView.viewer.scene;
+      s.requestRender();
+      const point = C.SceneTransforms.worldToWindowCoordinates(
+        s,
+        C.Cartesian3.fromDegrees(lon, lat),
+      );
+      return (
+        point &&
+        s.drillPick(point, 20).some((hit) => {
+          const value = hit?.id ?? hit?.primitive?.id;
+          return (typeof value === 'object' ? value?.id : value) === id;
+        })
+      );
+    },
+    { timeout: 30000 },
+    { id, lon, lat },
+  );
   const point = await page.evaluate(
     ({ id, lon, lat }) => {
       const C = window.__waterCesium,
