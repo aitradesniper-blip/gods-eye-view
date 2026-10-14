@@ -236,3 +236,65 @@ units/parameter codes and provisional status, and distinguish valid zero values
 from missing readings. Keep that work on its own branch/PR. It can add public
 domain streamflow, gage-height, rainfall and groundwater observations after
 source validation without expanding this parks-and-trails patch.
+
+## Current-main update — October 14, 2026
+
+This City parks, trails and trailheads update merges upstream main `1d9d7c71d5c4c3cd222223ca35bc2088b52dcc41` into the existing
+published draft, preserving its implementation commits and separate scope.
+The initial changelog and formatting-scope conflicts retain both contributions
+and current upstream entries. A later upstream refresh also retains the Director
+dateline and portable Chrome changes. Runtime revision validated:
+`821b40b4c31f61ddbd90840e92efdf19b89b2ae6`. The final documentation commit adds this record only.
+
+Required checks passed on the actual updated tree: doctor JSON, format/check
+(1351 adopted files), boundaries, whitespace, immutable
+token checking, full unit runner and production build. The full unit runner
+reported **6552 main passes / 0 failures / 1 skip**, followed by
+**1 focus allocation pass and 13 overlay allocation passes** (6566
+passes total). The skip is the Windows-native DACL test on Linux. Build warnings
+about large chunks remain. The City gate passed all 62
+checks; tracking passed **109/0/0**, with clean console and HTTP 5xx ledger.
+Built-preview inspection passed 13 checks, including picks,
+source credits, activation/disable cleanup and a fresh share recipient.
+
+Execution used WSL2 Ubuntu, Node 24.19.0, locked `npm ci` with npm 10.9.3,
+and full Chrome for Testing 152.0.7977.75. Bubblewrap isolated mount, PID, user
+and network namespaces, without host credentials or home directories. Browser
+and server egress used an exact-host HTTPS allowlist; Chrome retained its own
+namespace/seccomp sandbox. The actual renderer was ANGLE Vulkan SwiftShader
+software. A restricted WSL hardware attempt could not create WebGL2, so hardware
+performance remains unverified. Tracking's official `--offline-imagery` option
+fixtures tile images while required fonts, metadata and terrain remain real.
+
+PR #997 is now merged (`91ac5c119084fdb200362b2c6dd07cb2324fb081`). Fresh
+native Windows 11 Pro build 22621, Node 24.19.0, `process.platform=win32`
+verification of current main's exact `codexOauthRealtime.test.mjs` file passed
+**8/8**. The prior Codex fixture failure is resolved; earlier Windows/Pinokio
+and tracking records above remain historical. A complete native Windows suite
+is not claimed by the Linux review. The prepared revision has not been pushed,
+so it has no new GitHub CI result. The original draft's CI remains
+`action_required`; local passes do not clear required CI or maintainer review.
+
+Current main still has 29 permanent reservations. The allocation helper
+retains provisional City tokens `3/4/5`, preserving every published/retired
+assignment. USGS draft #1072 remains separate. The local combined candidate
+proposes City first, then USGS `6`; approve an integration order and refresh
+the permanent ledger before either source's final merge.
+
+Fresh adapter reads returned 337 boundaries, 4,976 trail segments and 83
+trailheads, with zero omissions and unchanged accepted geometry. 353 trail
+segments retain MPO provenance. This is availability/schema evidence, not
+permission. The prior conditional City terms, blank named-license records and
+MPO/third-party provenance questions remain unresolved for maintainer disposition.
+
+Fresh audits of candidate and the unchanged baseline lockfile remain identical:
+one low (dompurify) and two high (sharp, source-map-js). No dependency change is
+included. Review records retain the initial marker gate failure, the superseded
+main runs, one interrupted tracking navigation during checkout refresh, and the
+review proxy's rejected-socket EPIPE crash. That helper was fixed without widening
+its allowlist, and affected completed gates were rerun. Those earlier attempts
+are not counted as completed passing gates.
+
+Keep the draft status. Source-rights disposition, applicable hardware evidence,
+successful CI, maintainer acceptance and refreshed merge-time token allocation
+remain conditions before merge. No force push, approval review or merge was performed.
