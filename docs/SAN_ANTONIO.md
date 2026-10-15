@@ -298,3 +298,31 @@ are not counted as completed passing gates.
 Keep the draft status. Source-rights disposition, applicable hardware evidence,
 successful CI, maintainer acceptance and refreshed merge-time token allocation
 remain conditions before merge. No force push, approval review or merge was performed.
+
+## Final frozen-baseline refresh — October 14, 2026
+
+Upstream advanced again during this review. The final frozen review baseline is
+`81cf437ee52b3a0e57b8cfa652ccb287a86395e6`, which adds weather-missing-observation and Unicode
+tool-string validation fixes. Contribution policies, CI, the dependency lockfile
+and all 29 permanent share-token reservations are unchanged. This update merges
+that baseline without rewriting the original draft or mixing source families.
+The final tested runtime is `8821e83418388e1e20ff2ece9df5514568dffaeb`.
+
+The refreshed full unit runner passed **6556 main / 1 focus / 13 overlay
+checks, 0 failures, 1 Windows-only skip** (6570 passes total). Doctor,
+format/check, boundaries, token checking, whitespace and production build passed.
+The applicable feature gate passed 62 checks, tracking
+passed **109/0/0**, and built-preview inspection passed 13 checks,
+including share restoration. The records above describe the earlier completed
+baseline and remain historical evidence rather than substituted final results.
+
+One parallel browser attempt ended when WSL unexpectedly stopped. Its partial
+logs are retained; the stopped instance restarted without a service shutdown or
+stopping unrelated jobs, and final browser checks completed sequentially on the
+same frozen runtime. This is a review-environment interruption, not a completed
+passing gate or an attributed application regression. No assertions were waived.
+
+The source-rights, audit, CI, native-Windows/full-suite and hardware-performance
+limitations above remain. Prepared changes stay local and drafts stay drafts.
+Refresh main and the permanent ledger again before an actual merge; published
+tokens remain immutable. The final commit changes documentation only.
