@@ -329,9 +329,10 @@ tokens remain immutable. The final commit changes documentation only.
 
 ## Publication refresh — October 14, 2026
 
-The publication candidate merges upstream `fc798969ec2d888b90ff59db5eeb5641458453a0` without
+The publication candidate merges upstream `7661cd349c935077994e01c794e9cd6faae06117` without
 rewriting published contributor commits. Intervening changes correct route-cap
-reporting, duplicate Street Level tiles and missing imagery-box edges. The
+reporting, duplicate Street Level tiles, missing imagery-box edges and warm
+terrain batch-cache eviction. The
 contribution policies, CI, dependency lockfile and permanent token ledger are
 unchanged. No San Antonio production implementation changed in this refresh.
 
