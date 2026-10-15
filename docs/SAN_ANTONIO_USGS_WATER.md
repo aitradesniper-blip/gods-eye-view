@@ -112,7 +112,7 @@ See [DATA_SOURCES.md](../DATA_SOURCES.md#san-antonio-area-usgs-water) for credit
 
 ## Share token coordination
 
-Reviewed upstream `81cf437ee52b3a0e57b8cfa652ccb287a86395e6` assigns the next
+Reviewed upstream `fc798969ec2d888b90ff59db5eeb5641458453a0` assigns the next
 available token `3` to this layer. This allocation is provisional until merge.
 The separate City PR also proposes `3`, `4`, and `5`. If that PR merges first,
 remove only this contribution's unpublished registry/ledger entry and run
@@ -298,3 +298,22 @@ The source-rights, audit, CI, native-Windows/full-suite and hardware-performance
 limitations above remain. Prepared changes stay local and drafts stay drafts.
 Refresh main and the permanent ledger again before an actual merge; published
 tokens remain immutable. The final commit changes documentation only.
+
+## Publication refresh — October 14, 2026
+
+The publication candidate merges upstream `fc798969ec2d888b90ff59db5eeb5641458453a0` without
+rewriting published contributor commits. Intervening changes correct route-cap
+reporting, duplicate Street Level tiles and missing imagery-box edges. The
+contribution policies, CI, dependency lockfile and permanent token ledger are
+unchanged. No San Antonio production implementation changed in this refresh.
+
+The earlier validation sections remain tied to their stated revisions. Fresh
+publication validation records exact commands and candidate revisions separately;
+earlier results are not substituted for checks of this refreshed candidate.
+Source-rights questions, dependency findings and hardware-performance limitations
+remain open. Publication keeps this PR draft and does not approve a merge.
+
+Standalone USGS retains provisional token `3` against this main. If City merges
+first, refresh main and allocate the next valid token using the real helper;
+`6` is only the current local City-first integration proposal. Never alter a
+published or retired reservation.
