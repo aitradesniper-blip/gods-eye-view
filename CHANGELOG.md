@@ -1,5 +1,9 @@
 # Changelog
 
+- Preserve PARTIAL in shared layer provenance used by voice and HUD summaries.
+  An enabled partial layer no longer reports overall OFF when queried alone or
+  nominal beside a nominal layer. More severe warning states retain priority.
+
 - Local FM seek finds stations after wrapping around 87.5–108 MHz, covers both
   band edges, skips the starting station and rejects spectra from an earlier
   tune (Aditya, @Rohilalala, #1174).
