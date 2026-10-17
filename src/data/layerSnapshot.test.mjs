@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import {
   hudSummaryLayerContext,
   hudSummaryMatchesProvenance,
-  hudTelemetryProvenanceTag,
+  hudTelemetryProvenance,
 } from '../hudSummaryResponse.js';
 import {
   FEED_STATE_SEVERITY,
@@ -213,10 +213,10 @@ for (const withNominal of [false, true]) {
     assert.equal(viewStateLayerRow(partial, { now: NOW }).feedState, 'partial');
     const hud = hudSummaryLayerContext(layers, { now: NOW });
     assert.equal(hud.feedProvenance.overall, 'partial');
-    assert.equal(
-      hudTelemetryProvenanceTag(layers, { now: NOW }),
-      'PARTIAL PARTIAL FIXTURE',
-    );
+    assert.deepEqual(hudTelemetryProvenance(layers, { now: NOW }), {
+      state: 'partial',
+      names: ['Partial fixture'],
+    });
     assert.equal(
       hudSummaryMatchesProvenance(
         'Nominal observations in this view',
@@ -259,7 +259,7 @@ test('disabled partial stats remain off in shared provenance', () => {
   const envelope = feedProvenanceEnvelope([layer], { now: NOW });
   assert.equal(envelope.overall, 'off');
   assert.equal(envelope.layers[0].feedState, 'off');
-  assert.equal(hudTelemetryProvenanceTag([layer], { now: NOW }), null);
+  assert.equal(hudTelemetryProvenance([layer], { now: NOW }), null);
 });
 
 test('degraded and unavailable envelopes outrank leftover nominal neighbours', () => {
